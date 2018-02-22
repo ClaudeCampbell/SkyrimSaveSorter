@@ -21,10 +21,7 @@ namespace SkyrimSaveSorter
 
             getMoveStatus(ref saves);
 
-            bar.Invoke(new Action(() => { bar.Minimum = 1; }));
-            bar.Invoke(new Action(() => { bar.Maximum = saves.Count; }));
-            bar.Invoke(new Action(() => { bar.Value = 1; }));
-            bar.Invoke(new Action(() => { bar.Step = 1; }));
+            resetbar(saves.Count);
 
             foreach (SaveObject save in saves)
             {
@@ -57,7 +54,7 @@ namespace SkyrimSaveSorter
 
                 }
 
-                bar.Invoke(new Action(() => { bar.PerformStep(); }));
+                stepBar();
             }
             MessageBox.Show("Done");
         }
@@ -191,10 +188,7 @@ namespace SkyrimSaveSorter
         {
             string[] saves = Directory.GetFiles(Properties.Settings.Default.SaveFolder);
 
-            bar.Invoke(new Action(() => { bar.Minimum = 1; }));
-            bar.Invoke(new Action(() => { bar.Maximum = saves.Length; }));
-            bar.Invoke(new Action(() => { bar.Value = 1; }));
-            bar.Invoke(new Action(() => { bar.Step = 1; }));
+            resetbar(saves.Length);
 
             foreach (string save in saves)
             {
@@ -210,8 +204,23 @@ namespace SkyrimSaveSorter
 
                     }                  
                 }
-                bar.Invoke(new Action(() => { bar.PerformStep(); }));
+                stepBar();
             }
+        }
+
+        //  Resets the progress bar
+        static void resetbar(int barlength)
+        {
+            bar.Invoke(new Action(() => { bar.Minimum = 1; }));
+            bar.Invoke(new Action(() => { bar.Maximum = barlength; }));
+            bar.Invoke(new Action(() => { bar.Value = 1; }));
+            bar.Invoke(new Action(() => { bar.Step = 1; }));
+        }
+
+        // Steps the progress bar by 1
+        static void stepBar()
+        {
+            bar.Invoke(new Action(() => { bar.PerformStep(); }));
         }
     }
 

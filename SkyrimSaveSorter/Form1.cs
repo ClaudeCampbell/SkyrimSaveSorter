@@ -52,24 +52,6 @@ namespace SkyrimSaveSorter
 
         private void button3_Click(object sender, EventArgs e)
         {
-            /**
-            FileStream fs = File.Open("C:\\Users\\Et-el\\Documents\\my games\\skyrim\\saves\\Save 3641 - Morlae  Skyrim  201.30.06.ess", FileMode.Open);
-            byte[] b = new byte[78];
-            fs.Read(b, 0, 78);
-
-            char[] t = System.Text.Encoding.UTF8.GetString(b).ToCharArray();
-
-            t = t;
-
-            FileStream fs2 = File.Open("C:\\Users\\Et-el\\Documents\\my games\\skyrim\\saves\\Save 3619 - Sonja  Skyrim  96.08.03.ess", FileMode.Open);
-            byte[] b2 = new byte[64];
-            fs2.Read(b2, 0, 64);
-
-            char[] t2 = System.Text.Encoding.UTF8.GetString(b2).ToCharArray();
-
-            t2 = t2;
-            */
-            //Sorter.sortSaves();
             Sorter.bar = progressBar1;
             Thread th = new Thread(Sorter.sortSaves);
             th.Start();            

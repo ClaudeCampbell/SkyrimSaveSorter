@@ -63,5 +63,15 @@ namespace SkyrimSaveSorter
             Thread th = new Thread(Sorter.deleteTmp);
             th.Start();
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.NumberOfSaves = (int)numericUpDown1.Value;
+        }
     }
 }

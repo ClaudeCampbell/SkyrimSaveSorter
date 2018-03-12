@@ -107,7 +107,9 @@ namespace SkyrimSaveSorter
             {
                 if (save.isAutosave) { continue; }
                 else if (save.Move) { continue; }
-                else if (save.SaveNumber <= 5) { continue; }
+                else if (save.SaveNumber <= Properties.Settings.Default.NumberOfSaves) { continue; }
+
+                //I have it set to keep 10% of other saves, not really useful or necessary, but it was part of the idea I had at the time so this will stay for now
                 else
                 {
                     Random r = new Random();
@@ -208,7 +210,10 @@ namespace SkyrimSaveSorter
             }
         }
 
-        //  Resets the progress bar
+        //
+        // Summary:
+        //     Resets the progress bar
+        //     
         static void resetbar(int barlength)
         {
             bar.Invoke(new Action(() => { bar.Minimum = 1; }));

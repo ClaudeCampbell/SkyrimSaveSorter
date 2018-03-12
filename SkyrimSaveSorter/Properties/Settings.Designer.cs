@@ -46,5 +46,17 @@ namespace SkyrimSaveSorter.Properties {
                 this["ArchiveFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int NumberOfSaves {
+            get {
+                return ((int)(this["NumberOfSaves"]));
+            }
+            set {
+                this["NumberOfSaves"] = value;
+            }
+        }
     }
 }

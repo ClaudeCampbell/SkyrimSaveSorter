@@ -59,6 +59,7 @@ namespace SkyrimSaveSorter
             MessageBox.Show("Done");
         }
 
+        //Sets the move property for a list of saves
         static void getMoveStatus(ref List<SaveObject> saves)
         {
             List<string> uniqueNames = new List<string>();
@@ -107,22 +108,8 @@ namespace SkyrimSaveSorter
             {
                 if (save.isAutosave) { continue; }
                 else if (save.Move) { continue; }
-                else if (save.SaveNumber <= Properties.Settings.Default.NumberOfSaves) { continue; }
-
-                //I have it set to keep 10% of other saves, not really useful or necessary, but it was part of the idea I had at the time so this will stay for now
-                else
-                {
-                    Random r = new Random();
-                    int rg = r.Next(0, 100);
-                    if (rg >= 90)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        save.Move = true;
-                    }
-                }
+                else if (DateTime.Compare(save.CreationDate,Properties.Settings.Default.OldestDate) < 0) { save.Move = randomMove(); } //I have it set to keep 10% of other saves, not really useful or necessary, but it was part of the idea I had at the time so this will stay for now
+                else if (save.SaveNumber >= Properties.Settings.Default.NumberOfSaves) { save.Move = randomMove(); }
             }
         }
 
@@ -140,7 +127,7 @@ namespace SkyrimSaveSorter
                     SaveObject mainSave = new SaveObject();
                     mainSave.ESSPath = save;
                     mainSave.SKSEPath = Path.ChangeExtension(save, "skse");
-                    if(!save.Contains("autosave"))
+                    if(!save.Contains("autosave") || !save.Contains("quicksave"))
                     {
                         mainSave.isAutosave = false;
 
@@ -172,7 +159,10 @@ namespace SkyrimSaveSorter
                             mainSave.Location = n.ToString();
                         }
 
-                        mainSave.CreationDate = File.GetCreationTime(save);                            
+                        //if the file was moved then creation time will be earlier than actual creation
+                        if (File.GetLastWriteTime(save) >= File.GetCreationTime(save)) { mainSave.CreationDate = File.GetCreationTime(save); }
+                        else mainSave.CreationDate = File.GetLastWriteTime(save);
+                                                  
                     }
                     else
                     {
@@ -186,6 +176,7 @@ namespace SkyrimSaveSorter
             return saveList;
         }
 
+        //deletes tmp save files (typically files broken during saving)
         public static void deleteTmp()
         {
             string[] saves = Directory.GetFiles(Properties.Settings.Default.SaveFolder);
@@ -208,6 +199,15 @@ namespace SkyrimSaveSorter
                 }
                 stepBar();
             }
+        }
+
+        // Returns true 90% of the time to keep a random number of old saves
+        static bool randomMove()
+        {
+            Random r = new Random();
+            int rg = r.Next(0, 100);
+
+            return rg <= 90;
         }
 
         //

@@ -58,5 +58,16 @@ namespace SkyrimSaveSorter.Properties {
                 this["NumberOfSaves"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime OldestDate {
+            get {
+                return ((global::System.DateTime)(this["OldestDate"]));
+            }
+            set {
+                this["OldestDate"] = value;
+            }
+        }
     }
 }

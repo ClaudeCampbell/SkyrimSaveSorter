@@ -24,6 +24,10 @@ namespace SkyrimSaveSorter
         {
             textBox1.Text = Properties.Settings.Default.SaveFolder;
             textBox2.Text = Properties.Settings.Default.ArchiveFolder;
+            numericUpDown1.Value = Properties.Settings.Default.NumberOfSaves;
+            if (Properties.Settings.Default.OldestDate == default(DateTime))
+                Properties.Settings.Default.OldestDate = DateTime.Now;
+            dateTimePicker.Value = Properties.Settings.Default.OldestDate;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -72,6 +76,13 @@ namespace SkyrimSaveSorter
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.NumberOfSaves = (int)numericUpDown1.Value;
+            Properties.Settings.Default.Save();
+        }
+
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.OldestDate = dateTimePicker.Value;
+            Properties.Settings.Default.Save();
         }
     }
 }

@@ -37,6 +37,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +79,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(13, 94);
+            this.button3.Location = new System.Drawing.Point(11, 119);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(389, 35);
             this.button3.TabIndex = 4;
@@ -87,14 +89,14 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 170);
+            this.progressBar1.Location = new System.Drawing.Point(11, 189);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(389, 23);
             this.progressBar1.TabIndex = 5;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(13, 135);
+            this.button4.Location = new System.Drawing.Point(11, 160);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(389, 23);
             this.button4.TabIndex = 6;
@@ -124,11 +126,30 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Number of saves to keep:";
             // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Location = new System.Drawing.Point(147, 93);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.TabIndex = 9;
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 93);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Keep saves made after:";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 224);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.button4);
@@ -158,6 +179,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Label label2;
     }
 }
 

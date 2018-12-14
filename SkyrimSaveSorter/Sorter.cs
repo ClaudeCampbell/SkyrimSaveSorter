@@ -210,10 +210,8 @@ namespace SkyrimSaveSorter
             return rg <= 90;
         }
 
-        //
-        // Summary:
-        //     Resets the progress bar
-        //     
+
+        // Resets the progress bar   
         static void resetbar(int barlength)
         {
             bar.Invoke(new Action(() => { bar.Minimum = 1; }));
